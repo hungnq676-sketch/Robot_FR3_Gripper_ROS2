@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="fr3_custom_3finger_gripper_mesh">
+  <material name="gripper_body_gray">
+    <color rgba="0.24 0.26 0.30 1.0" />
+  </material>
+  <material name="gripper_finger_orange">
+    <color rgba="0.95 0.42 0.08 1.0" />
+  </material>
+  <link name="custom_gripper_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/gripper_body.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_body_gray" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/gripper_body.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="custom_gripper_body_link" />
+  <joint name="custom_gripper_base_to_body" type="fixed">
+    <parent link="custom_gripper_base_link" />
+    <child link="custom_gripper_body_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="custom_gripper_command_link" />
+  <joint name="custom_gripper_actuation_joint" type="revolute">
+    <parent link="custom_gripper_body_link" />
+    <child link="custom_gripper_command_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.500000" upper="0.900000" effort="5.0" velocity="2.0" />
+  </joint>
+  <link name="custom_gripper_finger_1_link_1">
+    <visual>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_1_joint_1" type="revolute">
+    <parent link="custom_gripper_body_link" />
+    <child link="custom_gripper_finger_1_link_1" />
+    <origin xyz="-0.044999566 0.000000000 0.114541657" rpy="1.570796327 0.000000000 0.000000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.50000" upper="0.900000" effort="5.0" velocity="2.0" />
+    <mimic joint="custom_gripper_actuation_joint" multiplier="-0.473684211" offset="-0.473684211" />
+  </joint>
+  <link name="custom_gripper_finger_1_link_2">
+    <visual>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_1_joint_2" type="revolute">
+    <parent link="custom_gripper_finger_1_link_1" />
+    <child link="custom_gripper_finger_1_link_2" />
+    <origin xyz="-0.040594141 0.054545200 0.000000000" rpy="0.000000000 0.000000000 0.000000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.800000" upper="0.000000" effort="5.0" velocity="2.0" />
+    <dynamics damping="0.08" friction="0.02" />
+  </joint>
+  <link name="custom_gripper_finger_2_link_1">
+    <visual>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_2_joint_1" type="revolute">
+    <parent link="custom_gripper_body_link" />
+    <child link="custom_gripper_finger_2_link_1" />
+    <origin xyz="0.022499783 -0.038971143 0.114541657" rpy="1.570796327 0.000000000 2.094395102" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.500000" upper="0.900000" effort="5.0" velocity="2.0" />
+    <mimic joint="custom_gripper_actuation_joint" multiplier="-0.473684211" offset="-0.473684211" />
+  </joint>
+  <link name="custom_gripper_finger_2_link_2">
+    <visual>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_2_joint_2" type="revolute">
+    <parent link="custom_gripper_finger_2_link_1" />
+    <child link="custom_gripper_finger_2_link_2" />
+    <origin xyz="-0.040594141 0.054545200 0.000000000" rpy="0.000000000 0.000000000 0.000000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.800000" upper="0.000000" effort="5.0" velocity="2.0" />
+    <dynamics damping="0.08" friction="0.02" />
+  </joint>
+  <link name="custom_gripper_finger_3_link_1">
+    <visual>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.090512882 -0.075082268 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_3_joint_1" type="revolute">
+    <parent link="custom_gripper_body_link" />
+    <child link="custom_gripper_finger_3_link_1" />
+    <origin xyz="0.022499783 0.038971143 0.114541657" rpy="1.570796327 0.000000000 -2.094395102" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.500000" upper="0.900000" effort="5.0" velocity="2.0" />
+    <mimic joint="custom_gripper_actuation_joint" multiplier="-0.473684211" offset="-0.473684211" />
+  </joint>
+  <link name="custom_gripper_finger_3_link_2">
+    <visual>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="gripper_finger_orange" />
+    </visual>
+    <collision>
+      <origin xyz="-0.049918741 -0.129627471 -0.164942100" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://fr3_custom_gripper_description/meshes/phalanx_2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="custom_gripper_finger_3_joint_2" type="revolute">
+    <parent link="custom_gripper_finger_3_link_1" />
+    <child link="custom_gripper_finger_3_link_2" />
+    <origin xyz="-0.040594141 0.054545200 0.000000000" rpy="0.000000000 0.000000000 0.000000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.800000" upper="0.000000" effort="5.0" velocity="2.0" />
+    <dynamics damping="0.08" friction="0.02" />
+  </joint>
+  <link name="custom_gripper_tcp" />
+  <joint name="custom_gripper_body_to_tcp" type="fixed">
+    <parent link="custom_gripper_body_link" />
+    <child link="custom_gripper_tcp" />
+    <origin xyz="0 0 0.180000" rpy="0 0 0" />
+  </joint>
+</robot>
